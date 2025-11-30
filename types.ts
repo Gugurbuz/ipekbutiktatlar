@@ -1,3 +1,4 @@
+
 export type Category = 'all' | 'birthday' | 'wedding' | 'cupcake' | 'special';
 export type PageView = 'home' | 'about' | 'products' | 'order' | 'contact';
 
@@ -8,6 +9,7 @@ export interface Product {
   price: string;
   image: string;
   description: string;
+  instagramLink?: string;
 }
 
 export interface Testimonial {
@@ -26,6 +28,11 @@ export interface OrderSuggestion {
 export interface CustomDesign {
   image: string; // Base64 string
   prompt: string;
+}
+
+export interface DesignHistoryItem extends CustomDesign {
+  id: number;
+  timestamp: number;
 }
 
 export interface OrderFormState {

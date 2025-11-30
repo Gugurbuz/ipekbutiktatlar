@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Heart, MessageCircle, Instagram, ExternalLink, CheckCircle } from 'lucide-react';
 import { PRODUCTS, CONTACT_INFO } from '../constants';
@@ -9,6 +10,7 @@ export const InstagramGallery: React.FC = () => {
     image: product.image,
     likes: Math.floor(Math.random() * 500) + 120,
     comments: Math.floor(Math.random() * 50) + 5,
+    link: product.instagramLink || CONTACT_INFO.instagramUrl
   }));
 
   return (
@@ -68,7 +70,7 @@ export const InstagramGallery: React.FC = () => {
           {posts.map((post) => (
             <a 
               key={post.id}
-              href={CONTACT_INFO.instagramUrl}
+              href={post.link}
               target="_blank"
               rel="noopener noreferrer"
               className="relative aspect-square group overflow-hidden bg-gray-100 cursor-pointer"

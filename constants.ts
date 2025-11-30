@@ -1,3 +1,4 @@
+
 import { Product, Testimonial, Campaign } from './types';
 
 export const CATEGORIES = [
@@ -8,6 +9,14 @@ export const CATEGORIES = [
   { id: 'special', name: 'Özel Tasarım' }
 ];
 
+export const CONTACT_INFO = {
+    phone: "0555 123 45 67",
+    whatsapp: "905551234567",
+    address: "Eryaman, Etimesgut / Ankara",
+    email: "bilgi@ipekbutiktatlar.com",
+    instagramUrl: "https://www.instagram.com/ipekbutiktatlar/"
+}
+
 export const PRODUCTS: Product[] = [
   {
     id: 1,
@@ -15,7 +24,8 @@ export const PRODUCTS: Product[] = [
     category: "birthday",
     price: "1200 TL",
     image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=800",
-    description: "Taze orman meyveleri ve özel pastacı kreması ile hazırlanan yumuşacık bir lezzet."
+    description: "Taze orman meyveleri ve özel pastacı kreması ile hazırlanan yumuşacık bir lezzet.",
+    instagramLink: CONTACT_INFO.instagramUrl
   },
   {
     id: 2,
@@ -23,7 +33,8 @@ export const PRODUCTS: Product[] = [
     category: "wedding",
     price: "3500 TL",
     image: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&q=80&w=800",
-    description: "3 katlı, şeker hamuru kaplamalı ve el yapımı yenilebilir çiçeklerle süslenmiş şaheser."
+    description: "3 katlı, şeker hamuru kaplamalı ve el yapımı yenilebilir çiçeklerle süslenmiş şaheser.",
+    instagramLink: CONTACT_INFO.instagramUrl
   },
   {
     id: 3,
@@ -31,7 +42,8 @@ export const PRODUCTS: Product[] = [
     category: "cupcake",
     price: "450 TL",
     image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcf8?auto=format&fit=crop&q=80&w=800",
-    description: "6'lı paket. Belçika çikolatası dolgulu ve üzerinde ganaj krema ile."
+    description: "6'lı paket. Belçika çikolatası dolgulu ve üzerinde ganaj krema ile.",
+    instagramLink: CONTACT_INFO.instagramUrl
   },
   {
     id: 4,
@@ -39,7 +51,8 @@ export const PRODUCTS: Product[] = [
     category: "birthday",
     price: "1400 TL",
     image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800",
-    description: "Çocukların favorisi! Rengarenk katmanlar ve el yapımı figürler."
+    description: "Çocukların favorisi! Rengarenk katmanlar ve el yapımı figürler.",
+    instagramLink: CONTACT_INFO.instagramUrl
   },
   {
     id: 5,
@@ -47,7 +60,8 @@ export const PRODUCTS: Product[] = [
     category: "wedding",
     price: "2800 TL",
     image: "https://images.unsplash.com/photo-1623428454614-abaf00244e52?auto=format&fit=crop&q=80&w=800",
-    description: "Naked cake tarzında, taze çiçekler ve mevsim meyveleriyle süslenmiş doğal görünüm."
+    description: "Naked cake tarzında, taze çiçekler ve mevsim meyveleriyle süslenmiş doğal görünüm.",
+    instagramLink: CONTACT_INFO.instagramUrl
   },
   {
     id: 6,
@@ -55,7 +69,8 @@ export const PRODUCTS: Product[] = [
     category: "cupcake",
     price: "950 TL",
     image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&q=80&w=800",
-    description: "Rengarenk badem unlu makaronlardan oluşan şık bir sunum."
+    description: "Rengarenk badem unlu makaronlardan oluşan şık bir sunum.",
+    instagramLink: CONTACT_INFO.instagramUrl
   }
 ];
 
@@ -64,14 +79,6 @@ export const TESTIMONIALS: Testimonial[] = [
   { id: 2, name: "Caner Erkin", comment: "Nişan pastamız tam istediğimiz gibi sade ve şıktı. İpek Hanım'ın ilgisi için çok teşekkürler.", rating: 5 },
   { id: 3, name: "Selin Demir", comment: "Cupcakeler ofis partimizin yıldızı oldu. Kesinlikle tekrar sipariş vereceğiz.", rating: 5 },
 ];
-
-export const CONTACT_INFO = {
-    phone: "0555 123 45 67",
-    whatsapp: "905551234567",
-    address: "Eryaman, Etimesgut / Ankara",
-    email: "bilgi@ipekbutiktatlar.com",
-    instagramUrl: "https://www.instagram.com/ipekbutiktatlar/"
-}
 
 export const CAKE_FLAVORS = [
   "Vanilyalı & Çilekli",
@@ -103,7 +110,8 @@ export const ACTIVE_CAMPAIGN: Campaign = {
       category: "birthday",
       price: "1350 TL",
       image: "https://images.unsplash.com/photo-1587242188619-74d7522d4f26?auto=format&fit=crop&q=80&w=600",
-      description: "Kedi dili bisküviler ve bol çilek dolgusu ile klasik bir Fransız lezzeti."
+      description: "Kedi dili bisküviler ve bol çilek dolgusu ile klasik bir Fransız lezzeti.",
+      instagramLink: CONTACT_INFO.instagramUrl
     },
     {
       id: 102,
@@ -111,7 +119,8 @@ export const ACTIVE_CAMPAIGN: Campaign = {
       category: "special",
       price: "1500 TL",
       image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=80&w=600",
-      description: "Yenilebilir çiçekler ve vanilya ganaj ile süslenmiş hafif bir bahar rüyası."
+      description: "Yenilebilir çiçekler ve vanilya ganaj ile süslenmiş hafif bir bahar rüyası.",
+      instagramLink: CONTACT_INFO.instagramUrl
     },
      {
       id: 103,
@@ -119,7 +128,8 @@ export const ACTIVE_CAMPAIGN: Campaign = {
       category: "special",
       price: "1250 TL",
       image: "https://images.unsplash.com/photo-1519340333755-56e9c1d04579?auto=format&fit=crop&q=80&w=600",
-      description: "Ekşi ve tatlının mükemmel uyumu, taze limon kremasıyla."
+      description: "Ekşi ve tatlının mükemmel uyumu, taze limon kremasıyla.",
+      instagramLink: CONTACT_INFO.instagramUrl
     }
   ]
 };

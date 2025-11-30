@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ShoppingBag, Menu, X, Star, Instagram, Phone, MapPin, Heart, ChevronRight, Cake, Send } from 'lucide-react';
 import { AiChatBot } from './components/AiChatBot';
@@ -172,9 +173,9 @@ export default function App() {
       <section id="tasarim" className="py-20 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Sihirli Fırınımız Sizin İçin Çalışsın</h2>
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Sihirli Mutfağımız Sizin İçin Çalışsın</h2>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                Henüz vitrinimizde olmayan bir hayaliniz mi var? Yapay zeka destekli tasarım aracımızla aklınızdaki pastayı oluşturun ve hemen sipariş verin.
+                Henüz vitrinimizde olmayan bir hayaliniz mi var? Sihirli mutfak destekli tasarım aracımızla aklınızdaki pastayı oluşturun ve hemen sipariş verin.
                 </p>
             </div>
             <AICakeDesigner onDesignSelect={handleCustomDesignOrder} />
@@ -224,7 +225,7 @@ export default function App() {
                   
                   {/* Instagram Button Overlay */}
                   <a 
-                    href={CONTACT_INFO.instagramUrl}
+                    href={product.instagramLink || CONTACT_INFO.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer" 
                     className="absolute top-4 left-4 bg-white/90 backdrop-blur p-2 rounded-full text-rose-500 shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-rose-500 hover:text-white transform -translate-y-2 group-hover:translate-y-0"

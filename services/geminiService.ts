@@ -87,24 +87,27 @@ export const getCakeSuggestion = async (eventType: string, personCount: string, 
 
 export const generateCakeDesign = async (prompt: string): Promise<string | null> => {
   try {
-    // Enhance the prompt for high-end food photography results
-    // Refined instructions for maximum realism and appetizing look
+    // Enhanced prompt for hyper-realistic, magazine-quality food photography
     const enhancedPrompt = `
-      Generate a professional, high-definition photograph of a boutique cake described as: "${prompt}".
-      
-      CRITICAL VISUAL GUIDELINES:
-      1.  **Photorealism**: The image MUST look like a real photo taken by a professional food photographer. No illustrations, no 3D renders, no cartoons.
-      2.  **Lighting**: Soft, diffused natural window light coming from the side (rembrandt lighting) to create gentle highlights on the frosting and depth in shadows. Avoid harsh flash.
-      3.  **Textures**:
-          - Frosting/Buttercream: Must look creamy, smooth, or piped with visible texture, not plastic.
-          - Sponge: If visible, must look moist, airy, and soft.
-          - Glaze/Ganache: Glossy and reflective.
-          - Fruits: Fresh, glistening with natural moisture.
-      4.  **Camera**: Shot with a 50mm or 85mm prime lens at f/2.8. Sharp focus on the front details of the cake, with a creamy, soft background blur (bokeh).
-      5.  **Setting**: An elegant, clean marble countertop or a rustic wooden table in a bright, airy patisserie environment. Neutral tones.
-      6.  **Composition**: Centered or slightly off-center, plated on a beautiful ceramic cake stand or plate.
-      
-      NEGATIVE PROMPT (Implicit): Do not include text, watermarks, writing on the cake, blurry details, distorted shapes, oversaturated colors, plastic-looking surfaces, people, or hands.
+      Create a hyper-realistic, award-winning food photography shot of a custom boutique cake based on this description: "${prompt}".
+
+      **Visual Style & Atmosphere:**
+      - **Style:** High-end culinary magazine aesthetic (e.g., Bon Appétit, Saveur).
+      - **Lighting:** Soft, directional natural light from a nearby window (Rembrandt style). Subtle rim lighting to accentuate textures. No harsh flash. Warm, inviting color temperature.
+      - **Setting:** Placed on a premium ceramic cake stand or a rustic wooden board. Background is a blurred, elegant kitchen or patisserie counter (creamy bokeh).
+
+      **Texture & Details (Crucial):**
+      - **Frosting:** Must look visibly creamy, airy, and spreadable. Visible spatula marks or piping definition. NOT plastic or smooth like fondant unless specified.
+      - **Decorations:** Fresh fruits should have microscopic water droplets (condensation). Chocolate shavings should have a snap/matte finish. Gold leaf should shimmer authentically.
+      - **Imperfections:** Add subtle, natural imperfections like a few crumbs on the plate or a slight drip of ganache to ensure it looks handmade and real, not computer-generated.
+
+      **Technical Specs:**
+      - **Camera:** Simulated 85mm macro lens at f/2.8 aperture.
+      - **Focus:** Razor-sharp focus on the front tier/slice, falling off into a soft blur.
+      - **Quality:** 8K resolution, highly detailed, sharp textures.
+
+      **Negative Constraints:** 
+      - No text, no watermarks, no labels, no humans/hands, no cartoonish colors, no low-poly shapes, no plastic textures.
     `;
 
     const response = await ai.models.generateContent({
