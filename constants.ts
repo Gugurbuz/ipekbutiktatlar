@@ -1,5 +1,5 @@
 
-import { Product, Testimonial, Campaign } from './types';
+import { Product, Testimonial, Campaign, BlogPost } from './types';
 
 export const CATEGORIES = [
   { id: 'all', name: 'Tümü' },
@@ -133,3 +133,33 @@ export const ACTIVE_CAMPAIGN: Campaign = {
     }
   ]
 };
+
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: "Evde Mükemmel Pandispanya Yapmanın Püf Noktaları",
+    excerpt: "Kabarmayan keklere son! İpek Şef'ten evde sünger gibi yumuşak ve lezzetli pandispanya yapmanın altın kuralları.",
+    date: "14 Mart 2024",
+    readTime: "4 dk okuma",
+    category: "Mutfak Sırları",
+    imageUrl: "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 2,
+    title: "Hayalinizdeki Düğün Pastasını Seçerken Dikkat Etmeniz Gerekenler",
+    excerpt: "Düğün konseptinize en uygun pastayı nasıl seçersiniz? Lezzet, tasarım ve porsiyon hesaplama rehberi.",
+    date: "02 Mart 2024",
+    readTime: "6 dk okuma",
+    category: "Düğün Rehberi",
+    imageUrl: "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 3,
+    title: "Butik Pastaların Saklama Koşulları",
+    excerpt: "Koruyucu madde içermeyen doğal pastalarınızı taze tutmak için bilmeniz gereken pratik saklama yöntemleri.",
+    date: "20 Şubat 2024",
+    readTime: "3 dk okuma",
+    category: "Pratik Bilgiler",
+    imageUrl: "https://images.unsplash.com/photo-1586985289688-ca3cfd7d3ce0?auto=format&fit=crop&q=80&w=800"
+  }
+];

@@ -1,22 +1,30 @@
-
 import React, { useState } from 'react';
-import { ShoppingBag, Menu, X, Star, Instagram, Phone, MapPin, Heart, ChevronRight, Cake, Send } from 'lucide-react';
+import { ShoppingBag, Menu, X, Star, Instagram, Phone, MapPin, ChevronRight, Cake, Send } from 'lucide-react';
 import { AiChatBot } from './components/AiChatBot';
 import { AICakeDesigner } from './components/AICakeDesigner';
 import { OrderModal } from './components/OrderModal';
 import { CampaignSection } from './components/CampaignSection';
 import { OrderSteps } from './components/OrderSteps';
-import { PRODUCTS, CATEGORIES, TESTIMONIALS, CONTACT_INFO, ACTIVE_CAMPAIGN } from './constants';
-import { Product, PageView, CustomDesign } from './types';
+import { BlogSection } from './components/BlogSection';
+import { PRODUCTS, CATEGORIES, TESTIMONIALS, CONTACT_INFO, ACTIVE_CAMPAIGN, BLOG_POSTS } from './constants';
+import { Product, CustomDesign } from './types';
 import { InstagramGallery } from './components/InstagramGallery';
+import { CartProvider, useCart } from './contexts/CartContext';
+import { CartDrawer } from './components/CartDrawer';
+import { FlavorQuiz } from './components/FlavorQuiz';
+import { Gamepad2 } from 'lucide-react';
 
-export default function App() {
+// İç bileşen (MainApp) oluşturuyoruz ki useCart hook'unu kullanabilelim
+const MainApp = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
-  const [cartCount, setCartCount] = useState(0);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedCustomDesign, setSelectedCustomDesign] = useState<CustomDesign | null>(null);
+  const [showQuiz, setShowQuiz] = useState(false);
+  
+  // Context'ten fonksiyonları çekiyoruz
+  const { addToCart, toggleCart, cartCount } = useCart();
 
   const filteredProducts = activeCategory === 'all' 
     ? PRODUCTS 
@@ -34,11 +42,6 @@ export default function App() {
     setShowOrderModal(true);
   };
 
-  const addToCart = () => {
-    setCartCount(prev => prev + 1);
-  };
-
-  // Safe scroll function to prevent "Refused to connect" errors with hash links
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -70,14 +73,19 @@ export default function App() {
               <button onClick={() => scrollToSection('koleksiyon')} className="text-gray-600 hover:text-rose-500 font-medium transition cursor-pointer outline-none">Koleksiyon</button>
               <button onClick={() => scrollToSection('tasarim')} className="text-gray-600 hover:text-rose-500 font-medium transition cursor-pointer outline-none">Sihirli Mutfak</button>
               <button onClick={() => scrollToSection('siparissureci')} className="text-gray-600 hover:text-rose-500 font-medium transition cursor-pointer outline-none">Süreç</button>
+              <button onClick={() => scrollToSection('blog')} className="text-gray-600 hover:text-rose-500 font-medium transition cursor-pointer outline-none">Blog</button>
               <button onClick={() => scrollToSection('hakkimizda')} className="text-gray-600 hover:text-rose-500 font-medium transition cursor-pointer outline-none">Hakkımızda</button>
               <button onClick={() => scrollToSection('iletisim')} className="bg-rose-500 text-white px-5 py-2 rounded-full hover:bg-rose-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer outline-none">
                 İletişim
               </button>
-              <div className="relative cursor-pointer" onClick={() => alert("Sepet özelliği yakında aktif!")}>
-                <ShoppingBag className="text-gray-600 hover:text-rose-500 transition" />
+              
+              {/* Cart Button with Context */}
+              <div className="relative cursor-pointer group" onClick={toggleCart}>
+                <div className="p-2 rounded-full hover:bg-rose-50 transition">
+                   <ShoppingBag className="text-gray-600 group-hover:text-rose-500 transition" />
+                </div>
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-rose-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  <span className="absolute top-0 right-0 bg-rose-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full animate-in zoom-in">
                     {cartCount}
                   </span>
                 )}
@@ -85,7 +93,15 @@ export default function App() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center z-50">
+            <div className="md:hidden flex items-center gap-4 z-50">
+              <button onClick={toggleCart} className="relative text-gray-600 hover:text-rose-500 p-2 outline-none">
+                <ShoppingBag size={24} />
+                 {cartCount > 0 && (
+                  <span className="absolute top-0 right-0 bg-rose-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-600 hover:text-rose-500 p-2 outline-none">
                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -101,12 +117,16 @@ export default function App() {
               <button onClick={() => scrollToSection('koleksiyon')} className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-rose-50 rounded-lg transition-colors font-medium outline-none">Koleksiyon</button>
               <button onClick={() => scrollToSection('tasarim')} className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-rose-50 rounded-lg transition-colors font-medium outline-none">Sihirli Mutfak</button>
               <button onClick={() => scrollToSection('siparissureci')} className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-rose-50 rounded-lg transition-colors font-medium outline-none">Süreç</button>
+              <button onClick={() => scrollToSection('blog')} className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-rose-50 rounded-lg transition-colors font-medium outline-none">Blog</button>
               <button onClick={() => scrollToSection('hakkimizda')} className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-rose-50 rounded-lg transition-colors font-medium outline-none">Hakkımızda</button>
               <button onClick={() => scrollToSection('iletisim')} className="block w-full text-left px-4 py-3 text-rose-600 font-bold hover:bg-rose-50 rounded-lg transition-colors outline-none">İletişim</button>
             </div>
           </div>
         )}
       </nav>
+
+      {/* --- Cart Drawer --- */}
+      <CartDrawer />
 
       {/* --- Hero Section --- */}
       <section id="anasayfa" className="relative pt-24 pb-16 md:pt-36 md:pb-24 overflow-hidden">
@@ -133,8 +153,11 @@ export default function App() {
                 <button onClick={() => scrollToSection('koleksiyon')} className="bg-rose-500 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-rose-600 transition flex items-center justify-center gap-2 outline-none">
                   Lezzetleri Keşfet <ChevronRight size={20}/>
                 </button>
-                <button onClick={() => scrollToSection('tasarim')} className="bg-white text-gray-800 border border-gray-200 px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition flex items-center justify-center outline-none">
-                  Pasta Tasarla
+                <button 
+                  onClick={() => setShowQuiz(true)}
+                  className="bg-amber-100 text-amber-800 border border-amber-200 px-8 py-4 rounded-full font-medium hover:bg-amber-200 transition flex items-center justify-center gap-2 outline-none"
+                >
+                  <Gamepad2 size={20} /> Testi Çöz
                 </button>
               </div>
             </div>
@@ -243,8 +266,8 @@ export default function App() {
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <button 
-                      onClick={() => addToCart()}
-                      className="text-gray-500 hover:text-rose-500 font-medium text-sm transition flex items-center gap-1 outline-none"
+                      onClick={() => addToCart(product)}
+                      className="text-gray-500 hover:text-rose-500 font-medium text-sm transition flex items-center gap-1 outline-none group-hover:text-rose-600"
                     >
                       <ShoppingBag size={16} /> Sepete Ekle
                     </button>
@@ -261,6 +284,9 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* --- Blog Section (New) --- */}
+      <BlogSection posts={BLOG_POSTS} />
 
       {/* --- Instagram Gallery --- */}
       <InstagramGallery />
@@ -412,6 +438,22 @@ export default function App() {
       {/* --- AI Chatbot Integration --- */}
       <AiChatBot />
 
+      <FlavorQuiz 
+        isOpen={showQuiz} 
+        onClose={() => setShowQuiz(false)}
+        onProductFound={(product) => {
+          console.log("Bulunan ürün:", product.name);
+        }}
+      />
     </div>
+  );
+};
+
+// App Bileşeni Provider ile sarmalanıyor
+export default function App() {
+  return (
+    <CartProvider>
+      <MainApp />
+    </CartProvider>
   );
 }
