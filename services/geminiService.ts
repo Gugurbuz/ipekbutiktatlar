@@ -1,7 +1,7 @@
 import { GoogleGenAI, Chat, Type } from "@google/genai";
 import { OrderSuggestion } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KE });
 
 let chatSession: Chat | null = null;
 
